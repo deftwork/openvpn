@@ -14,9 +14,9 @@ A [Docker](http://docker.com) file to build images for AMD & ARM devices with a 
 - [GitHub](https://github.com/DeftWork/openvpn)
 - [Deft.Work my personal blog](http://deft.work)
 
-| Docker Hub | Docker Pulls | Docker Stars | Docker Build | Size/Layers |
-| --- | --- | --- | --- | --- |
-| [OpenVPN](https://hub.docker.com/r/elswork/openvpn "elswork/openvpn on Docker Hub") | [![](https://img.shields.io/docker/pulls/elswork/openvpn.svg)](https://hub.docker.com/r/elswork/openvpn "openvpn on Docker Hub") | [![](https://img.shields.io/docker/stars/elswork/openvpn.svg)](https://hub.docker.com/r/elswork/openvpn "OpenVPN on Docker Hub") | [![](https://img.shields.io/docker/build/elswork/openvpn.svg)](https://hub.docker.com/r/elswork/openvpn "OpenVPN on Docker Hub") | [![](https://images.microbadger.com/badges/image/elswork/openvpn.svg)](https://microbadger.com/images/elswork/openvpn "OpenVPN on microbadger.com") |
+| Docker Hub | Docker Pulls | Docker Stars | Size/Layers |
+| --- | --- | --- | --- |
+| [OpenVPN](https://hub.docker.com/r/elswork/openvpn "elswork/openvpn on Docker Hub") | [![](https://img.shields.io/docker/pulls/elswork/openvpn.svg)](https://hub.docker.com/r/elswork/openvpn "openvpn on Docker Hub") | [![](https://img.shields.io/docker/stars/elswork/openvpn.svg)](https://hub.docker.com/r/elswork/openvpn "OpenVPN on Docker Hub") | [![](https://images.microbadger.com/badges/image/elswork/openvpn.svg)](https://microbadger.com/images/elswork/openvpn "OpenVPN on microbadger.com") |
 
 ## Build Instructions
 
@@ -47,7 +47,9 @@ make config
 ``` 
 Or
 ``` sh
-docker run -v ovpn-data-sample:/etc/openvpn --log-driver=none --rm elswork/openvpn ovpn_genconfig -u udp://YourServerDomain.com
+docker run -v ovpn-data-sample:/etc/openvpn \
+    --log-driver=none --rm elswork/openvpn ovpn_genconfig \
+    -u udp://YourServerDomain.com
 ``` 
 
 ### Init PKI
@@ -57,7 +59,8 @@ make pki
 ``` 
 Or
 ``` sh
-docker run -v ovpn-data-sample:/etc/openvpn --log-driver=none --rm -it elswork/openvpn ovpn_initpki
+docker run -v ovpn-data-sample:/etc/openvpn \
+    --log-driver=none --rm -it elswork/openvpn ovpn_initpki
 ```
 
 ### Start VPN Server
@@ -67,7 +70,8 @@ make start
 ``` 
 Or
 ``` sh
-docker run -v ovpn-data-sample:/etc/openvpn -d -p 1194:1194/udp --cap-add=NET_ADMIN elswork/openvpn
+docker run -v ovpn-data-sample:/etc/openvpn \
+    -d -p 1194:1194/udp --cap-add=NET_ADMIN elswork/openvpn
 ```
 
 ### Create ovpn client file
@@ -77,7 +81,8 @@ make client
 ``` 
 Or
 ``` sh
-docker run -v ovpn-data-sample:/etc/openvpn --log-driver=none --rm -it elswork/openvpn easyrsa build-client-full CLIENTNAME nopass
+docker run -v ovpn-data-sample:/etc/openvpn \
+    --log-driver=none --rm -it elswork/openvpn easyrsa build-client-full CLIENTNAME nopass
 ```
 
 ### Retrieve ovpn client file
@@ -87,7 +92,9 @@ make retrieve
 ``` 
 Or
 ``` sh
-docker run -v ovpn-data-sample:/etc/openvpn --log-driver=none --rm elswork/openvpn ovpn_getclient CLIENTNAME > CLIENTNAME.ovpn
+docker run -v ovpn-data-sample:/etc/openvpn \
+    --log-driver=none --rm elswork/openvpn \
+    ovpn_getclient CLIENTNAME > CLIENTNAME.ovpn
 ```
 
 Send the generated ovpn file to your smartphone.
