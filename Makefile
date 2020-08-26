@@ -24,7 +24,7 @@ help: ## This help.
 
 # DOCKER TASKS
 
-debug: ## Build the container
+debug: ## Debug the container
 	docker build -t $(RNAME):$(GOARCH) \
 	--build-arg BASEIMAGE=$(BASENAME) \
 	--build-arg VERSION=$(GOARCH)_$(VER) .
@@ -34,7 +34,7 @@ build: ## Build the container
 	--build-arg VCS_REF=`git rev-parse --short HEAD` \
 	--build-arg BASEIMAGE=$(BASENAME) \
 	--build-arg VERSION=$(GOARCH)_$(VER) \
-	. > ../builds/$(GOARCH)_$(VER)_`date +"%Y%m%d_%H%M%S"`.txt
+	. > builds/$(GOARCH)_$(VER)_`date +"%Y%m%d_%H%M%S"`.txt
 bootstrap: ## Start multicompiler
 	docker buildx inspect --bootstrap
 buildx: ## Buildx the container
