@@ -100,3 +100,6 @@ docker run -v ovpn-data-sample:/etc/openvpn \
 Send the generated ovpn file to your smartphone.
 
 You must have installed [OpenVPN Connect – Fast & Safe SSL VPN Client](https://play.google.com/store/apps/details?id=net.openvpn.openvpn)
+
+---
+**[Sponsor me!](https://github.com/sponsors/elswork) Together we will be unstoppable.**
