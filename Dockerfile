@@ -1,4 +1,4 @@
-ARG BASEIMAGE=alpine:3.10
+ARG BASEIMAGE=alpine:latest
 FROM ${BASEIMAGE}
 
 ARG BUILD_DATE
@@ -23,9 +23,9 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/reposi
 
 # Needed by scripts
 ENV OPENVPN /etc/openvpn
-ENV EASYRSA /usr/share/easy-rsa
-ENV EASYRSA_PKI $OPENVPN/pki
-ENV EASYRSA_VARS_FILE $OPENVPN/vars
+ENV EASYRSA /usr/share/easy-rsa \
+EASYRSA_PKI $OPENVPN/pki \
+EASYRSA_VARS_FILE $OPENVPN/vars
 
 # Prevents refused client connection because of an expired CRL
 ENV EASYRSA_CRL_DAYS 3650
