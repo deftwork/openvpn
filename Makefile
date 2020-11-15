@@ -1,7 +1,7 @@
 SNAME ?= openvpn
 RNAME ?= elswork/$(SNAME)
 VER ?= `cat VERSION`
-BASE ?= latest
+BASE ?= 3.12
 BASENAME ?= alpine:$(BASE)
 OVPN_DATA ?= ovpn-data
 SERVERNAME ?= deft.work
