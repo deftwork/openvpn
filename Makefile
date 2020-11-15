@@ -1,7 +1,7 @@
 SNAME ?= openvpn
 RNAME ?= elswork/$(SNAME)
 VER ?= `cat VERSION`
-BASE ?= 3.12
+BASE ?= latest
 BASENAME ?= alpine:$(BASE)
 OVPN_DATA ?= ovpn-data
 SERVERNAME ?= deft.work
@@ -66,6 +66,7 @@ volume: ## Create Volume
 config: ## Generate configuration
 	docker run -v $(OVPN_DATA):/etc/openvpn --log-driver=none --rm $(RNAME) ovpn_genconfig -u udp://$(SERVERNAME)
 pki: ## Init PKI
+	docker run -v $(OVPN_DATA):/etc/openvpn --log-driver=none --rm -it $(RNAME) touch /etc/openvpn/vars
 	docker run -v $(OVPN_DATA):/etc/openvpn --log-driver=none --rm -it $(RNAME) ovpn_initpki
 start: ## Start VPN Server
 	docker run -v $(OVPN_DATA):/etc/openvpn -d -p 1194:1194/udp --cap-add=NET_ADMIN $(RNAME)
