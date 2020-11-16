@@ -68,6 +68,7 @@ config: ## Generate configuration
 pki: ## Init PKI
 	docker run -v $(OVPN_DATA):/etc/openvpn --log-driver=none --rm -it $(RNAME) touch /etc/openvpn/vars
 	docker run -v $(OVPN_DATA):/etc/openvpn --log-driver=none --rm -it $(RNAME) ovpn_initpki
+init: volume config pki ## Execute volume, config, pki all together
 start: ## Start VPN Server
 	docker run -v $(OVPN_DATA):/etc/openvpn -d -p 1194:1194/udp --cap-add=NET_ADMIN $(RNAME)
 client: ## Create ovpn client file

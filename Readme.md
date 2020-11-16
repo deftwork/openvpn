@@ -52,7 +52,7 @@ docker run -v ovpn-data-sample:/etc/openvpn \
     -u udp://YourServerDomain.com
 ``` 
 
-### Init PKI
+### Initialize PKI
 
 ``` sh
 make pki
@@ -60,7 +60,17 @@ make pki
 Or
 ``` sh
 docker run -v ovpn-data-sample:/etc/openvpn \
+    --log-driver=none --rm -it elswork/openvpn touch /etc/openvpn/vars
+docker run -v ovpn-data-sample:/etc/openvpn \
     --log-driver=none --rm -it elswork/openvpn ovpn_initpki
+```
+
+### Init
+
+You can execute earlier three steps (Create Volume, Generate Configuration and Initialize PKI) in a single make command.
+
+``` sh
+make init
 ```
 
 ### Start VPN Server
@@ -97,9 +107,9 @@ docker run -v ovpn-data-sample:/etc/openvpn \
     ovpn_getclient CLIENTNAME > CLIENTNAME.ovpn
 ```
 
-Send the generated ovpn file to your smartphone.
+After this command a file called "CLIENTNAME.ovpn" should be created in the current path, this file in the client configuration file for this VPN server, it must be sent to the client device that will connect to the VPN, sometimes it can be difficult to send that file out of the linux system, I suggest to send it via mail if you have an operative mail system in your linux host or using SFTP, FTP, SCP, or [Samba](https://hub.docker.com/r/elswork/samba). Send the generated ovpn file to your smartphone or client device.
 
-You must have installed [OpenVPN Connect – Fast & Safe SSL VPN Client](https://play.google.com/store/apps/details?id=net.openvpn.openvpn)
+You must have installed [OpenVPN Connect](https://openvpn.net/download-open-vpn/)
 
 ---
 **[Sponsor me!](https://github.com/sponsors/elswork) Together we will be unstoppable.**
