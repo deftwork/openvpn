@@ -4,16 +4,17 @@ FROM ${BASEIMAGE}
 ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION
+
 LABEL mantainer="Eloy Lopez <elswork@gmail.com>" \
-    org.label-schema.build-date=$BUILD_DATE \
-    org.label-schema.name="openvpn" \
-    org.label-schema.description="Multiarch openvpn for amd64 arm32v7 or arm64" \
-    org.label-schema.url="https://deft.work/openvpn" \
-    org.label-schema.vcs-ref=$VCS_REF \
-    org.label-schema.vcs-url="https://github.com/DeftWork/openvpn" \
-    org.label-schema.vendor="Deft Work" \
-    org.label-schema.version=$VERSION \
-    org.label-schema.schema-version="1.0"
+    org.opencontainers.image.title=openvpn \
+    org.opencontainers.image.description="My Multiarch Openvpn Docker recipe" \
+    org.opencontainers.image.vendor=Deft.Work \
+    org.opencontainers.image.url=https://deft.work/openvpn \
+    org.opencontainers.image.source=https://github.com/DeftWork/openvpn \
+    org.opencontainers.image.version=$VERSION \ 
+    org.opencontainers.image.created=$BUILD_DATE \
+    org.opencontainers.image.revision=$VCS_REF \
+    org.opencontainers.image.licenses=MIT
 
 # Testing: pamtester
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \

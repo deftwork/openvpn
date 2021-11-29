@@ -11,12 +11,18 @@ A [Docker](http://docker.com) file to build images for AMD & ARM devices with a 
 
 ## Details
 
-- [GitHub](https://github.com/DeftWork/openvpn)
-- [Deft.Work my personal blog](http://deft.work)
+| Website | GitHub | Docker Hub |
+| --- | --- | --- |
+| [Deft.Work my personal blog](https://deft.work) | [openvpn](https://github.com/DeftWork/openvpn) | [openvpn](https://hub.docker.com/r/elswork/openvpn) |
 
-| Docker Hub | Docker Pulls | Docker Stars | Size/Layers |
+| Docker Pulls | Docker Stars | Size | Sponsors |
 | --- | --- | --- | --- |
-| [OpenVPN](https://hub.docker.com/r/elswork/openvpn "elswork/openvpn on Docker Hub") | [![](https://img.shields.io/docker/pulls/elswork/openvpn.svg)](https://hub.docker.com/r/elswork/openvpn "openvpn on Docker Hub") | [![](https://img.shields.io/docker/stars/elswork/openvpn.svg)](https://hub.docker.com/r/elswork/openvpn "OpenVPN on Docker Hub") | [![](https://images.microbadger.com/badges/image/elswork/openvpn.svg)](https://microbadger.com/images/elswork/openvpn "OpenVPN on microbadger.com") |
+| [![Docker pulls](https://img.shields.io/docker/pulls/elswork/openvpn.svg)](https://hub.docker.com/r/elswork/openvpn "openvpn on Docker Hub") | [![Docker stars](https://img.shields.io/docker/stars/elswork/openvpn.svg)](https://hub.docker.com/r/elswork/openvpn "openvpn on Docker Hub") | [![Docker Image size](https://img.shields.io/docker/image-size/elswork/openvpn)](https://hub.docker.com/r/elswork/openvpn "openvpn on Docker Hub") | [![GitHub Sponsors](https://img.shields.io/github/sponsors/elswork)](https://github.com/sponsors/elswork "Sponsor me!") |
+
+## Compatible Architectures
+
+This image has been builded using [buildx](https://docs.docker.com/buildx/working-with-buildx/) for this architectures: 
+- amd64 arm64 ppc64le s390x ~~386~~ arm/v7 arm/v6
 
 ## Build Instructions
 
