@@ -1,5 +1,6 @@
 SNAME ?= openvpn
 RNAME ?= elswork/$(SNAME)
+ONAME ?= deftwork/$(SNAME)
 VER ?= `cat VERSION`
 BASE ?= latest
 BASENAME ?= alpine:$(BASE)
@@ -49,6 +50,7 @@ debugx: ## Buildx in Debug mode
 buildx: ## Buildx the container
 	docker buildx build $(NO_CACHE) \
 	--platform ${TARGET_PLATFORM} \
+	-t ghcr.io/$(ONAME):$(VER) -t ghcr.io/$(ONAME):latest \
 	-t $(RNAME):$(VER) -t $(RNAME):latest --pull --push \
 	--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 	--build-arg VCS_REF=`git rev-parse --short HEAD` \
