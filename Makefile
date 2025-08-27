@@ -70,7 +70,7 @@ pki: ## Init PKI
 	docker run -v $(OVPN_DATA):/etc/openvpn --log-driver=none --rm -it $(RNAME):$(MODE) ovpn_initpki
 init: volume config pki ## Execute volume, config, pki all together
 start: ## Start VPN Server
-	docker run -v $(OVPN_DATA):/etc/openvpn -d -p 1194:1194/udp --cap-add=NET_ADMIN $(RNAME):$(MODE)
+	docker run -v $(OVPN_DATA):/etc/openvpn -d -p 1194:1194/udp --cap-add=NET_ADMIN $(RNAME):latest
 client: ## Create ovpn client file
 	docker run -v $(OVPN_DATA):/etc/openvpn --log-driver=none --rm -it $(RNAME):$(MODE) easyrsa build-client-full CLIENTNAME nopass
 retrieve: ## Retrieve ovpn client file
