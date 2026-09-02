@@ -90,6 +90,29 @@ docker run -v ovpn-data-sample:/etc/openvpn \
     -d -p 1194:1194/udp --cap-add=NET_ADMIN elswork/openvpn
 ```
 
+### Start VPN Server with Web UI
+
+If you want a graphical web interface to manage users, certificates, and check active connections, you can use the configured `docker-compose.yml` which deploys `flant/ovpn-admin` alongside your server:
+
+``` sh
+make compose-start
+```
+Or
+``` sh
+docker compose up -d
+```
+
+The web interface will be accessible at `http://localhost:8080`.
+
+To stop the services:
+``` sh
+make compose-stop
+```
+Or
+``` sh
+docker compose down
+```
+
 ### Create ovpn client file
 
 ``` sh

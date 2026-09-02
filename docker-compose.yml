@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  openvpn:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: elswork/openvpn:latest
+    container_name: openvpn
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "1194:1194/udp"
+      - "8080:8080" # The Web UI port is exposed here because ovpn-admin shares this network namespace
+    volumes:
+      - ovpn-data:/etc/openvpn
+    command: ovpn_run --management 127.0.0.1 8989
+    restart: unless-stopped
+
+  ovpn-admin:
+    image: flant/ovpn-admin:latest
+    command: /app/ovpn-admin
+    container_name: ovpn-admin
+    network_mode: "service:openvpn"
+    environment:
+      # Public address and port clients will use to connect to your VPN
+      - OVPN_SERVER=deft.work:1194:udp
+      # The VPN clients subnet (matches the server subnet in openvpn.conf)
+      - OVPN_NETWORK=192.168.255.0/24
+      # Path to the mounted easy-rsa PKI directory
+      - EASYRSA_PATH=/etc/openvpn
+      # Exact path to EasyRSA's index.txt database file
+      - OVPN_INDEX_PATH=/etc/openvpn/pki/index.txt
+      # Enable Client Config Directory (CCD) for static IP assignment
+      - OVPN_CCD=true
+      - OVPN_CCD_PATH=/etc/openvpn/ccd
+      # Point to the OpenVPN management interface on the shared network loopback
+      - OVPN_MGMT=main=127.0.0.1:8989
+    volumes:
+      - ovpn-data:/etc/openvpn
+    depends_on:
+      - openvpn
+    restart: unless-stopped
+
+volumes:
+  ovpn-data:
+    external: true
