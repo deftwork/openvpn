@@ -11,9 +11,9 @@ A [Docker](http://docker.com) file to build images for AMD & ARM devices with an
 
 ## Details
 
-| Website | GitHub | Docker Hub |
-| --- | --- | --- |
-| [Deft.Work my personal blog](https://deft.work) | [openvpn](https://github.com/DeftWork/openvpn) | [openvpn](https://hub.docker.com/r/elswork/openvpn) |
+| Website | GitHub | Docker Hub | Web Manager | Web Manager Repo |
+| --- | --- | --- | --- | --- |
+| [Deft.Work personal blog](https://deft.work) | [openvpn](https://github.com/DeftWork/openvpn) | [openvpn](https://hub.docker.com/r/elswork/openvpn) | [openvpn.deft.work](https://openvpn.deft.work) | [openvpn.deft.work](https://github.com/elswork/openvpn.deft.work) |
 
 | Docker Pulls | Docker Stars | Size | Sponsors |
 | --- | --- | --- | --- |
@@ -92,7 +92,27 @@ docker run -v ovpn-data-sample:/etc/openvpn \
 
 ### Start VPN Server with Web UI
 
-If you want a graphical web interface to manage users, certificates, and check active connections, you can use the configured `docker-compose.yml` which deploys `flant/ovpn-admin` alongside your server:
+You have two options for web management:
+
+#### Option 1: OpenVPN Web Manager (openvpn.deft.work) - Recommended
+
+For a modern glassmorphic dashboard with real-time telemetry, QR code configuration for smartphones, certificate creation/revocation (Easy-RSA v3), and live connection monitoring:
+
+- **Live URL**: [https://openvpn.deft.work](https://openvpn.deft.work)
+- **Repository**: [elswork/openvpn.deft.work](https://github.com/elswork/openvpn.deft.work)
+
+To deploy the OpenVPN server together with this web dashboard:
+``` sh
+git clone https://github.com/elswork/openvpn.deft.work.git
+cd openvpn.deft.work
+cp .env.example .env
+docker compose up -d
+```
+Access the dashboard at `https://openvpn.deft.work` or `http://localhost:5066`.
+
+#### Option 2: Bundled ovpn-admin
+
+Alternatively, you can use the bundled `docker-compose.yml` which deploys `flant/ovpn-admin` alongside your server:
 
 ``` sh
 make compose-start

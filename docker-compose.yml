@@ -1,3 +1,12 @@
+# ==============================================================================
+# OpenVPN Server Compose Deployment
+# 
+# For the official modern Web Dashboard with Glassmorphism UI, real-time metrics,
+# and mobile QR code configuration, check out:
+# https://github.com/elswork/openvpn.deft.work (Live: https://openvpn.deft.work)
+#
+# This file provides a quick deployment with flant/ovpn-admin on port 8080.
+# ==============================================================================
 version: '3.8'
 
 services:
